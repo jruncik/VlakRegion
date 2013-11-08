@@ -1,4 +1,4 @@
-﻿namespace VlakRegion.Model.RecordArchive
+﻿namespace VlakRegion.Core.RecordArchive
 {
     public enum Record
     {

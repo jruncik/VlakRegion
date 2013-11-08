@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace VlakRegion.Model.RecordArchive.RecordArchiveImpl.Binary
+namespace VlakRegion.Core.RecordArchive.RecordArchiveImpl.Binary
 {
     internal class RecordArchiveWriterBinary : RecordArchiveWriter
     {

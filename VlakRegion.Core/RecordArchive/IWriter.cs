@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VlakRegion.Model.RecordArchive
+namespace VlakRegion.Core.RecordArchive
 {
     public interface IWriter
     {

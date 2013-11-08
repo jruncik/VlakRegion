@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace VlakRegion.Model.RecordArchive
+namespace VlakRegion.Core.RecordArchive
 {
-    public interface IRecordArchiveWriter : IWriter
+    public interface IRecordArchiveWriter : IWriter, IDisposable
     {
         Int16 Version { get; }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace VlakRegion.Model.RecordArchive.Exceptions
+namespace VlakRegion.Core.RecordArchive.Exceptions
 {
     public class RecordArchiveException : Exception
     {

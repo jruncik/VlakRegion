@@ -1,37 +1,15 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
-namespace VlakRegion.Model.RecordArchive.RecordArchiveImpl
+namespace VlakRegion.Core.RecordArchive.RecordArchiveImpl.Binary
 {
-    internal abstract class RecordArchiveWriter : RecordArchive, IRecordArchiveWriter
+    internal class BinaryWriterImpl : IWriterImpl
     {
-        protected IWriterImpl _writer;
+        private readonly BinaryWriter _writer;
 
-        public Int16 Version { get; private set; }
-
-        internal RecordArchiveWriter(Stream stream, IWriterImpl writer, Int16 version)
-            : base(stream)
+        public BinaryWriterImpl(Stream stream)
         {
-            _writer = writer;
-            Version = version;
-
-            WriteMasterRecord();
+            _writer = new BinaryWriter(stream);
         }
-
-        public void Flush()
-        {
-            _writer.Flush();
-            _stream.Flush();
-        }
-
-        public void Close()
-        {
-            _writer.Close();
-        }
-
-        public abstract void NewRecord(RecordDescriptor recordDescriptor);
-
-        public abstract void EndRecord();
 
         public void Write(bool value)
         {
@@ -115,19 +93,24 @@ namespace VlakRegion.Model.RecordArchive.RecordArchiveImpl
             _writer.Write(value);
         }
 
-        protected override void DisposeMe()
+        public void Dispose()
         {
-            Flush();
-            Close();
-
             _writer.Dispose();
-            _writer = null;
         }
 
-        private void WriteMasterRecord()
+        public void Flush()
         {
-            NewRecord(new RecordDescriptor(Record.Master, Version));
-            EndRecord();
+            _writer.Flush();
+        }
+
+        public void Close()
+        {
+            _writer.Close();
+        }
+
+        public long Seek(int offset, SeekOrigin origin)
+        {
+            return _writer.Seek(offset, origin);
         }
     }
 }

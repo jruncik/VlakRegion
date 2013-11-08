@@ -1,8 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
-using AR = VlakRegion.Model.RecordArchive;
 
-namespace VlakRegion.Model.Tests
+namespace VlakRegion.Core.Tests
 {
     [TestFixture]
     public class VersionTest
@@ -11,13 +10,20 @@ namespace VlakRegion.Model.Tests
         [ExpectedException(typeof(FormatException))]
         public void ParseErrorNotEnoughtParams()
         {
-            Version.Parse("1.2.3");
+            System.Version.Parse("1.2.3");
+        }
+
+        [Test]
+        [ExpectedException(typeof(FormatException))]
+        public void ParseErrorWrongParams()
+        {
+            System.Version.Parse("1.2.3.Test");
         }
 
         [Test]
         public void ParseOk()
         {
-            Version version = Version.Parse("1.2.3.4");
+            System.Version version = System.Version.Parse("1.2.3.4");
 
             Assert.AreEqual(version.Major, 1);
             Assert.AreEqual(version.Minor, 2);

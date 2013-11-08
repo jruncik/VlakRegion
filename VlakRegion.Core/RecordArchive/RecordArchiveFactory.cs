@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
-using VlakRegion.Model.RecordArchive.RecordArchiveImpl;
-using VlakRegion.Model.RecordArchive.RecordArchiveImpl.Binary;
+using VlakRegion.Core.RecordArchive.RecordArchiveImpl.Binary;
 
-namespace VlakRegion.Model.RecordArchive
+namespace VlakRegion.Core.RecordArchive
 {
     public class RecordArchiveFactory
     {
@@ -14,7 +13,7 @@ namespace VlakRegion.Model.RecordArchive
 
         public IRecordArchiveReader CreateBinaryReader(Stream stream, Int16 version)
         {
-            return new RecordArchiveReader(stream);
+            return new RecordArchiveReaderBinary(stream);
         }
     }
 }

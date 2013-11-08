@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace VlakRegion.Model.RecordArchive.RecordArchiveImpl
+namespace VlakRegion.Core.RecordArchive.RecordArchiveImpl
 {
     public abstract class RecordArchive : IDisposable
     {

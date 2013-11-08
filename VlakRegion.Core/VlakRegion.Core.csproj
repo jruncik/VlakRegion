@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{15A0819F-C68C-4174-99C6-826DBCA15014}</ProjectGuid>
+    <ProjectGuid>{09FD1B65-D613-47A8-9C96-3A66640F0665}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VlakRegion.Model</RootNamespace>
-    <AssemblyName>VlakRegion.Model</AssemblyName>
+    <RootNamespace>VlakRegion.Core</RootNamespace>
+    <AssemblyName>VlakRegion.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.6.2.12296, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdParty\NUnit\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,35 +43,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\CoortinateEmpty.cs" />
-    <Compile Include="Common\Direction.cs" />
-    <Compile Include="Exceptions\VrException.cs" />
-    <Compile Include="Line\Line.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Common\Coordinate.cs" />
-    <Compile Include="Railway.cs" />
-    <Compile Include="Segments\FirstLastAccessors\FirstLastAccessorEmpty.cs" />
-    <Compile Include="Segments\FirstLastAccessors\FirstLastAccessorFactory.cs" />
-    <Compile Include="Segments\FirstLastAccessors\FirstLastAccessorFrom.cs" />
-    <Compile Include="Segments\FirstLastAccessors\FirstLastAccessorTo.cs" />
-    <Compile Include="Segments\FirstLastAccessors\IFirstLastAccessor.cs" />
-    <Compile Include="Segments\Iterators\ISegmentIterator.cs" />
-    <Compile Include="Segments\Iterators\SegmentIteratorFactory.cs" />
-    <Compile Include="Segments\Iterators\SegmentIteratorFrom.cs" />
-    <Compile Include="Segments\Iterators\SegmentIteratorTo.cs" />
-    <Compile Include="Segments\Segment.cs" />
-    <Compile Include="Segments\SegmentDistanceInfos\ISegementInfo.cs" />
-    <Compile Include="Segments\SegmentDistanceInfos\ISegementInfoAtAnd.cs" />
-    <Compile Include="Segments\SegmentDistanceInfos\ISegementInfoMiddle.cs" />
-    <Compile Include="Segments\SegmentDistanceInfos\SegementInfoAtEnd.cs" />
-    <Compile Include="Segments\SegmentDistanceInfos\SegementInfoInside.cs" />
-    <Compile Include="TrackObjects\KilomterPost.cs" />
-    <Compile Include="TrackObjects\RailwayStation.cs" />
-    <Compile Include="TrackObjects\Signs\Sign.cs" />
-    <Compile Include="TrackObjects\Signs\SpeedLimit.cs" />
-    <Compile Include="TrackObjects\TrackObject.cs" />
+    <Compile Include="RecordArchive\Exceptions\RecordArchiveException.cs" />
+    <Compile Include="RecordArchive\IReader.cs" />
+    <Compile Include="RecordArchive\IRecordArchiveReader.cs" />
+    <Compile Include="RecordArchive\IRecordArchiveWriter.cs" />
+    <Compile Include="RecordArchive\IWriter.cs" />
+    <Compile Include="RecordArchive\Record.cs" />
+    <Compile Include="RecordArchive\RecordArchiveFactory.cs" />
+    <Compile Include="RecordArchive\RecordArchiveImpl\Binary\BinaryReaderImpl.cs" />
+    <Compile Include="RecordArchive\RecordArchiveImpl\Binary\BinaryWriterImpl.cs" />
+    <Compile Include="RecordArchive\RecordArchiveImpl\Binary\CurrentRecordInfo.cs" />
+    <Compile Include="RecordArchive\RecordArchiveImpl\Binary\RecordArchiveReaderBinary.cs" />
+    <Compile Include="RecordArchive\RecordArchiveImpl\Binary\RecordArchiveWriterBinary.cs" />
+    <Compile Include="RecordArchive\RecordArchiveImpl\IReaderImpl.cs" />
+    <Compile Include="RecordArchive\RecordArchiveImpl\IWriterImpl.cs" />
+    <Compile Include="RecordArchive\RecordArchiveImpl\RecordArchive.cs" />
+    <Compile Include="RecordArchive\RecordArchiveImpl\RecordArchiveReader.cs" />
+    <Compile Include="RecordArchive\RecordArchiveImpl\RecordArchiveWriter.cs" />
+    <Compile Include="RecordArchive\RecordDescriptor.cs" />
+    <Compile Include="Version.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

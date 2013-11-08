@@ -1,35 +1,17 @@
 ﻿using System;
 using System.IO;
-using VlakRegion.Model.RecordArchive.Exceptions;
 
-namespace VlakRegion.Model.RecordArchive.RecordArchiveImpl
+namespace VlakRegion.Core.RecordArchive.RecordArchiveImpl.Binary
 {
-    public class RecordArchiveReader : RecordArchive, IRecordArchiveReader
+    internal class BinaryReaderImpl : IReaderImpl
     {
-        private BinaryReader _reader;
+        private readonly Stream _stream;
+        private readonly BinaryReader _reader;
 
-        public Int16 Version { get; private set; }
-
-        public RecordArchiveReader(Stream stream)
-            : base(stream)
+        public BinaryReaderImpl(Stream stream)
         {
-            _reader = new BinaryReader(_stream);
-
-            ReadMasterRecord();
-        }
-
-        public void Close()
-        {
-            _reader.Close();
-        }
-
-        public RecordDescriptor NewRecord()
-        {
-            return RecordDescriptor.Empty;
-        }
-
-        public void EndRecord()
-        {
+            _stream = stream;
+            _reader = new BinaryReader(stream);
         }
 
         public bool ReadBoolean()
@@ -114,26 +96,19 @@ namespace VlakRegion.Model.RecordArchive.RecordArchiveImpl
             return _reader.ReadUInt64();
         }
 
-        protected override void DisposeMe()
+        public void Dispose()
         {
-            Close();
-
             _reader.Dispose();
-            _reader = null;
         }
 
-        private void ReadMasterRecord()
+        public void Close()
         {
-            RecordDescriptor recordDescriptor = NewRecord();
+            _reader.Close();
+        }
 
-            if (recordDescriptor.Record != Record.Master)
-            {
-                throw new RecordArchiveException("Invalid Master record detected!");
-            }
-
-            Version = Version;
-
-            EndRecord();
+        public long Seek(int offset, SeekOrigin origin)
+        {
+            return _stream.Seek(offset, origin);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace VlakRegion.Model.RecordArchive.RecordArchiveImpl
+namespace VlakRegion.Core.RecordArchive.RecordArchiveImpl
 {
     internal interface IWriterImpl : IWriter, IDisposable
     {

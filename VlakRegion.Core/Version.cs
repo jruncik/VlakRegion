@@ -1,7 +1,7 @@
 ﻿using System;
-using VlakRegion.Model.RecordArchive;
+using VlakRegion.Core.RecordArchive;
 
-namespace VlakRegion.Model
+namespace VlakRegion.Core
 {
     public struct Version
     {

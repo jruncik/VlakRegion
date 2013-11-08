@@ -1,7 +1,7 @@
 ﻿using System;
-using VlakRegion.Model.RecordArchive.Exceptions;
+using VlakRegion.Core.RecordArchive.Exceptions;
 
-namespace VlakRegion.Model.RecordArchive.RecordArchiveImpl.Binary
+namespace VlakRegion.Core.RecordArchive.RecordArchiveImpl.Binary
 {
     internal struct CurrentRecordInfo
     {
